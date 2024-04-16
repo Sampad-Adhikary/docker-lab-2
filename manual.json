@@ -1,0 +1,63 @@
+{
+    "title": "Dockerizing a Web Application",
+    "steps": [
+        {
+            "step": "1",
+            "task": "In this exercise, you will learn how to dockerize a web application. You will use nginx server to serve static html website."
+        },
+        {
+            "link": "https://github.com/Sampad-Adhikary/online-sync",
+            "step": "2",
+            "task": "Clone the repository from given link. This repository contains static files for the web application."
+        },
+        {
+            "content": "touch nginx.conf",
+            "step": "3",
+            "task": "Create 'nginx.conf' file in the root directory of the repository. This file will contain configuration for nginx server."
+        },
+        {
+            "gist": "https://gist.github.com/Sampad-Adhikary/c2e0cc68874653f05b8d645456b80ce8",
+            "step": "4",
+            "task": "Copy configuration and paste it in 'nginx.conf' file. This configuration will be used by nginx server to serve your webapp."
+        },
+        {
+            "content": "touch supervisord.conf",
+            "step": "5",
+            "task": "Create 'supervisord.conf' file in the root directory. This file will contain configuration for supervisord process manager."
+        },
+        {
+            "gist": "https://gist.github.com/Sampad-Adhikary/4994376b85fe33ca3c0f88b5ca1d1229",
+            "step": "6",
+            "task": "Copy configuration and paste it in the 'supervisord.conf' file. This configuration will be used by the supervisord process manager to run nginx server."
+        },
+        {
+            "content": "touch Dockerfile",
+            "step": "7",
+            "task": "Create 'Dockerfile' in the root directory. This file will contain instructions to build docker image for web application."
+        },
+        {
+            "gist": "https://gist.github.com/Sampad-Adhikary/4d900b5481bb76bffb14fdb4161c108a",
+            "step": "8",
+            "task": "Add the following content to the Dockerfile created in previous step."
+        },
+        {
+            "content": "docker build -t webapp .",
+            "step": "9",
+            "task": "Build the docker image using the Dockerfile. Run this command in the root directory of the repository."
+        },
+        {
+            "content": "docker run -d -p 8080:8080 webapp",
+            "step": "10",
+            "task": "Run a docker container using the built image. This command will start the web application container and map port 8080 of the container to port 8080 of the host machine."
+        },
+        {
+            "step": "11",
+            "task": "Open your web browser and navigate to http://localhost:8080 to view the web application."
+        },
+        {
+            "step":"12",
+            "task":"You have successfully dockerized a web application using nginx server."
+        }
+    ],
+    "time": "30 minutes"
+}

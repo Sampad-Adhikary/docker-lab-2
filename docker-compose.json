@@ -1,0 +1,135 @@
+{
+    "title": "Introduction to Basics: Docker-Compose",
+    "steps": [
+      {
+        "step": "1",
+        "task": "Welcome! Let's dive into the world of Docker-Compose. Today, we'll cover the basics of Docker-Compose . Are you ready to get started?"
+      },
+      {
+        "step": "2",
+        "task": "Our sandbox environment already has Docker but you can install it on your machine by following the documentation link provided below.",
+        "link": "https://docs.docker.com/compose/install/"
+      },
+      {
+        "step": "3",
+        "task": "Excellent! Now that Docker and Docker-Compose are set up, let's move on to creating our first Docker application. We'll start by setting up the project directory to start working with dockerfiles.",
+        "content": "mkdir composetest && cd composetest"
+      },
+      {
+        "step": "4",
+        "task": "Now, let's create an 'app.py' file that contains the application code.This app.py file defines a Flask application that runs a web server. for example : This app.py when accessed, the root (/) route returns a response with the hit count and the hostname of the container serving the request. Run the following command to open nano editor and add the following content to app.py:",
+        "content": "nano app.py",
+        "gist": "https://gist.github.com/triptisharma827/0ae592c680a8ddcd346f9915dbedaeaf"
+      },
+      {
+        "step": "5",
+        "task": "Great! Next, we need a 'requirements.txt' file that lists the dependencies for our application. Run the following command to open nano editor and add the following content :",
+        "content": "nano requirements.txt",
+        "gist": "https://gist.github.com/triptisharma827/311c56bc89c86d265815daa65093f848"
+      },
+      {
+        "step": "6",
+        "task": "Now, let's create a 'Dockerfile' that defines the image for our application. It serves as a blueprint that defines how a Docker container should be created and what should be included in the container's filesystem. Run the following command to use nano editor and add the following content :",
+        "content": "nano Dockerfile",
+        "gist": "https://gist.github.com/triptisharma827/853e7523a7064f51f0741d1898654cc8"
+      },
+      {
+        "step": "7",
+        "task": "Excellent! We're making great progress. Now, let's create a 'docker-compose.yml' file to define the services.`docker-compose.yml` is a YAML (YAML Ain't Markup Language) file used to define and configure multiple Docker services for a multi-container application. It allows you to specify various settings, services, networks, volumes, and other configurations required to run your application with Docker Compose. Run the following command and add the following content :",
+        "content": "nano docker-compose.yml",
+        "gist": "https://gist.github.com/triptisharma827/915e5738e07a905d967e0899269d61cb"
+      },
+      {
+        "step": "8",
+        "task": "With everything set up, it's time to build and run our Docker-Compose file. Run the following command and see the output in the localhost tab(when you refresh the pages by changing tabs you will see the count increasing):",
+        "content": "docker-compose up"
+      },
+      {
+        "step": "9",
+        "task": "You did it! Now, let's stop the Docker-Compose services. Run the following command and see the output in the localhost tab:",
+        "content": "docker-compose down"
+      },
+      {
+        "step": "10",
+        "task": "Great job! Let's try running the Docker-Compose services in detached mode. Run the following command and see the output in the localhost tab:",
+        "content": "docker-compose up -d"
+      },
+      {
+        "step": "11",
+        "task": "If you want to start a specific service in detached mode, use the following command, You can find the service name in the 'docker-compose.yml' file or use 'docker-compose ps' to view the service name:",
+        "content": "docker-compose up <service_name> -d"
+      },
+      {
+        "step": "12",
+        "task": "Now, let's list the running containers to see the services currently running on our local Docker setup:",
+        "content": "docker-compose ps"
+      },
+      {
+        "step": "13",
+        "task": "Impressive! To view the logs of the services running with 'docker-compose up', use the following command:",
+        "content": "docker-compose logs"
+      },
+      {
+        "step": "14",
+        "task": "To view the logs for a specific service, run the following command. You can find the service name in the 'docker-compose.yml' file or use 'docker-compose ps' to view the service name:",
+        "content": "docker-compose logs <service-name>"
+      },
+      {
+        "step": "15",
+        "task": "Want to stop the Docker-Compose services running in detached mode? Use the following command:",
+        "content": "docker-compose stop"
+      },
+      {
+        "step": "16",
+        "task": "Now, let's edit the 'docker-compose.yml' file to add a bind mount. Go to the VsCode tab to edit the file or use the 'nano docker-compose.yml' command and add the following content :",
+        "gist": "https://gist.github.com/triptisharma827/a4781ad7701d90b08905d7c99c268592"
+      },
+      {
+        "step": "17",
+        "task": "Awesome! Let's build and re-run the Docker-Compose file to apply the changes. Run the following command and see the output in the localhost tab:",
+        "content": "docker-compose up"
+      },
+      {
+        "step": "18",
+        "task": "So why we did mounting ?  it is because the application code is now mounted into the container using a volume, you can make changes to its code and see the changes instantly, without having to rebuild the image."
+      },
+      {
+        "step": "19",
+        "task": "So Let's check it out. Go to VsCode tab and edit the app.py file and change the return statement, Replace `Hello World`  to `Happy Dockering`. You will see the change in localhost tab."
+      },
+      {
+        "step": "20",
+        "task": "Woah! You covered a lot. So, now lets dive in to the last section of this lab, docker compose scaling. So, what is scaling? Scaling is the process of increasing or decreasing the number of containers running a particular/same service. It is used to increase the capacity of the application. Let's see how we can scale our application. Run the following command to scale the application to 3 instances(If you want to run more than or less than 3 then, you can change the number and re-run the command):",
+        "content": "docker-compose up --scale web=3"
+      },
+      {
+        "step": "21",
+        "task": "Now, let's list the containers, -a is used to list non-running containers as well. You will see 3 containers with same service(here we are using redis) one will be running at a time other 2 are created and can be used. Run the following command:",
+        "content": "docker-compose ps -a"
+      },
+      {
+        "step": "22",
+        "task": "Great! Let's test it . Make a note of the output on localhost tab, you will see hostname and count. So we will stop the running web container. Replace <container_name > with your running container name in the following command: ",
+        "content": "docker stop <container-name >"
+      },
+      {
+        "step": "23",
+        "task": "Now, Start some other stopped web container. Replace <container_name> with your running container name in the following command:",
+        "content": "docker start <container-name>"
+      },
+      {
+        "step": "24",
+        "task": "Let's check now. Go to Localhost tab you will see the count is increased by 1 as you visited again and host name is different now. so, this means that we are running 3 containers with same services and we can use any of them."
+      },
+      {
+        "step": "25",
+        "task": "Great! You've successfully scaled your application. Now, let's stop the Docker-Compose services or scale down the containers. Run the following command:",
+        "content": "docker-compose down"
+      },
+      {
+        "step": "26",
+        "task": "Congratulations! You've successfully completed the lab. Feel free to explore more Docker-Compose features and build more sophisticated applications."
+      }
+    ],
+    "time": "60 minutes"
+  }
